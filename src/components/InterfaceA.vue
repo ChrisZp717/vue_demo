@@ -19,7 +19,6 @@
               <span>文件名: {{ file.name }}</span>
               <span>大小: {{ Math.round(file.size / 1024) }}KB</span>
               <span>MD5: {{ file.md5 }}</span>
-              <span>identity: {{ file.identity }}</span>
             </li>
           </ul>
         </div>
@@ -39,7 +38,11 @@
         dialogVisible: false
       }
     },
-    computed:{
+    destroyed() {
+      this.$destroy();
+      // console.log('destroyA');
+    },
+    computed: {
       successList() {
         return this.selectList.filter((file) => {
           return file.state === 1 && file.identity === this.identity;
@@ -72,11 +75,10 @@
           if (isExist === false) {
             this.selectList.push(file);
           } else {
-            this.$confirm('已存在同名文件，是否覆盖？')
-              .then(_ => {
-                done(this.selectList.splice(fileIndex, 1, file));
-              })
-              .catch(_ => {});
+            if (confirm(`存在同名文件${file.name}，是否覆盖？`)) {
+              this.selectList.splice(fileIndex, 1);
+              this.selectList.push(file);
+            }
           }
         }
         this.dialogVisible = false;
@@ -112,6 +114,7 @@
   span {
     display: block;
   }
+
   .panel-body {
     height: auto;
   }

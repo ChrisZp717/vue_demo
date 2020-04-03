@@ -28,7 +28,6 @@
   export default {
     props: {
       selectList: Array,
-      // successList: Array
     },
     methods: {
       cancel(file, index) {
@@ -68,7 +67,7 @@
     white-space: nowrap;
     overflow: hidden;
   }
-  
+
   span:last-child {
     margin-bottom: 3px;
   }
@@ -102,7 +101,7 @@
   }
 
   #cancelBtn {
-    width: 30%;
+    width: 25%;
     float: right;
   }
 </style>

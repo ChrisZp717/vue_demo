@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import Interface from '../components/Interface.vue';
+import InterfaceA from '../components/InterfaceA.vue';
+import InterfaceB from '../components/InterfaceB.vue';
 
 Vue.use(VueRouter);
 
@@ -12,8 +13,12 @@ export default new VueRouter({
       redirect: '/interfaceA'
     },
     {
-      path: '/interface:id',
-      component: Interface
+      path: '/interfaceA',
+      component: InterfaceA
+    },
+    {
+      path: '/interfaceB',
+      component: InterfaceB
     }
   ]
 })
